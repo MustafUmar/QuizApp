@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizGame", "QuizGame\QuizGame.csproj", "{8FFA5BBF-7649-4447-A37B-1E50730FD339}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester1", "Tester1\Tester1.csproj", "{C2E39B19-1203-4FE7-B777-F85C9C6633AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormTests", "FormTests\FormTests.csproj", "{2A2A9AAB-70B5-451A-9606-FAD517C18ACD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FFA5BBF-7649-4447-A37B-1E50730FD339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FFA5BBF-7649-4447-A37B-1E50730FD339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FFA5BBF-7649-4447-A37B-1E50730FD339}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FFA5BBF-7649-4447-A37B-1E50730FD339}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2E39B19-1203-4FE7-B777-F85C9C6633AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2E39B19-1203-4FE7-B777-F85C9C6633AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2E39B19-1203-4FE7-B777-F85C9C6633AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2E39B19-1203-4FE7-B777-F85C9C6633AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A2A9AAB-70B5-451A-9606-FAD517C18ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A2A9AAB-70B5-451A-9606-FAD517C18ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A2A9AAB-70B5-451A-9606-FAD517C18ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A2A9AAB-70B5-451A-9606-FAD517C18ACD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9D5A68D6-5A0D-4273-814E-79782C7B4C53}
+	EndGlobalSection
+EndGlobal
