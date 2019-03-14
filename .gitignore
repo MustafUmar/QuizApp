@@ -264,3 +264,4 @@ __pycache__/
 FormTests/
 Tester1/
 Cipher.cs
+Shuffler.cs
