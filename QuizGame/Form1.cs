@@ -24,15 +24,16 @@ namespace QuizGame
         private ScoreLoader scoreloader;
         private Scores currentPlayer;
         private Stopwatch stopwatch;
-        private bool isAsked;
-        private bool ended;
         private Random rndsound;
-
         private SoundPlayer popsound, tick, correctsound, timesup;
         private List<SoundPlayer> failsounds;
-
         private Transition transition;
 
+        private bool isAsked;
+        private bool ended;
+        private bool subscribed = true;
+        private bool iscollapsed = false;
+        
         public Form1()
         {
             InitializeComponent();
@@ -45,6 +46,7 @@ namespace QuizGame
                 MessageBox.Show(this, "Some files are missing and the application may not work properly.", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
 
+            displayHistory();
             stopwatch = new Stopwatch();
 
             //sounds
@@ -52,12 +54,12 @@ namespace QuizGame
             rndsound = new Random();
 
             //transition
-            transition = new Transition(new TransitionType_CriticalDamping(600));
+            transition = new Transition(new TransitionType_CriticalDamping(560));
             transition.add(quizdisplaypane, "Left", 8);
-           
+
+
             //displayHighscores();
-
-
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -91,6 +93,7 @@ namespace QuizGame
             resetContent();
             //timer1.Tick -= timer1_Tick;
             score = 0;
+            time = 0;
             this.Controls.Add(this.quizpanel);
             question = quizloader.loadQuiz(QuizTypes.EASY, 10);
             questnumlb.Text = quizloader.currentnum().ToString();
@@ -109,17 +112,19 @@ namespace QuizGame
 
         private void choosedOption(object sender, EventArgs e)
         {
+            if (subscribed)
+            {
+                for (int i = 0; i < optionsgrid.Controls.OfType<RadioButton>().Count(); i++)
+                    optionsgrid.Controls.OfType<FlowLayoutPanel>().ElementAt(i).Controls.OfType<Label>().ElementAt(0).Click -= option1lb_Click;
+                subscribed = false;
+                //optionsgrid.Controls.OfType<RadioButton>().ElementAt(0).Enabled = false;
+            }
             timer1.Stop();
             tick.Stop();
             stopwatch.Stop();
-            for (int i = 0; i < 5; i++)
-            {
-                optionsgrid.Controls.OfType<FlowLayoutPanel>().ElementAt(i).Controls.OfType<Label>().ElementAt(0).Enabled = false;
-            }
             foreach (var radio in optionsgrid.Controls.OfType<RadioButton>())
-            {
                 radio.Enabled = false;
-            }
+            
             RadioButton choice = (RadioButton)sender;
             int index = optionsgrid.Controls.OfType<RadioButton>().ToList().IndexOf(choice);
 
@@ -136,6 +141,12 @@ namespace QuizGame
 
         private void option1lb_Click(object sender, EventArgs e)
         {
+            if (subscribed)
+            {
+                for (int i = 0; i < optionsgrid.Controls.OfType<RadioButton>().Count(); i++)
+                    optionsgrid.Controls.OfType<FlowLayoutPanel>().ElementAt(i).Controls.OfType<Label>().ElementAt(0).Click -= option1lb_Click;
+                subscribed = false;
+            }
             timer1.Stop();
             tick.Stop();
             stopwatch.Stop();
@@ -158,12 +169,10 @@ namespace QuizGame
                 this.optionsgrid.Controls.Add(correctlb, 2, index + 1);
                 lb.ForeColor = System.Drawing.Color.YellowGreen;
                 correctsound.Play();
-                //score += 10;
-                time += stopwatch.ElapsedMilliseconds / 1000;
 
                 //scoring against time
-                //if time is less than 8 secs, minus the score
-                if ((timeleft > 6500))
+                //if time is less than 7 secs, minus the score
+                if ((timeleft > 7000))
                     score += 10;
                 else if (timeleft > 4000)
                     score += 8;
@@ -189,7 +198,7 @@ namespace QuizGame
                 lb2.ForeColor = System.Drawing.Color.YellowGreen;
                 lb.ForeColor = System.Drawing.Color.Tomato;
             }
-
+            time += stopwatch.ElapsedMilliseconds / 1000;
 
             nextQuestion();
         }
@@ -257,8 +266,13 @@ namespace QuizGame
             option3lb.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             option4lb.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             questnumlb.Text = quizloader.currentnum().ToString();
-            countdownbar.Value = 100;
 
+            if (!subscribed)
+            {
+                for (int i = 0; i < optionsgrid.Controls.OfType<RadioButton>().Count(); i++)
+                    optionsgrid.Controls.OfType<FlowLayoutPanel>().ElementAt(i).Controls.OfType<Label>().ElementAt(0).Click += option1lb_Click;
+                subscribed = true;
+            }
             foreach (var radio in optionsgrid.Controls.OfType<RadioButton>())
             {
                 radio.Checked = false;
@@ -276,24 +290,27 @@ namespace QuizGame
             timer1.Enabled = false;
             //timer1.Tick -= timer1_Tick;
             tick.Stop();
-            //resetContent();
+            Console.WriteLine(time+"s");
             if (currentPlayer == null)
             {
                 if(!isAsked)
                 {
                     string name = InputDialog.ShowDialog("Enter your name: ");
-                    if (name != null && name != "")
+                    if (name != null && name.Trim() != "")
                     {
                         setPlayer(name);
                         currentPlayer.playerScore = score;
+                        currentPlayer.playerTime = Math.Round(time, 1);
                         prepHighscores();
                         curplayernamelb.Text = currentPlayer.playerName;
                         curscorelb.Text = currentPlayer.playerScore.ToString();
+                        displayHistory(currentPlayer.playerName, currentPlayer.playerScore.ToString());
                     }
                     else
                     {
                         curplayernamelb.Text = "Guest";
                         curscorelb.Text = score.ToString();
+                        displayHistory("Guest", score.ToString());
                     }
 
                     isAsked = true;
@@ -301,26 +318,27 @@ namespace QuizGame
                 {
                     curplayernamelb.Text = "Guest";
                     curscorelb.Text = score.ToString();
+                    displayHistory("Guest", score.ToString());
                 }
                 
             } else
             {
                 currentPlayer.playerScore = score;
+                currentPlayer.playerTime = Math.Round(time, 1);
                 prepHighscores();
                 curplayernamelb.Text = currentPlayer.playerName;
                 curscorelb.Text = currentPlayer.playerScore.ToString();
+                displayHistory(currentPlayer.playerName, currentPlayer.playerScore.ToString());
             }
             this.highscorepanel.Controls.Add(currentscorepanel);
             displayHighscores();
             
-
         }
 
         public void prepHighscores()
         {
             var scorestat = scoreloader.add(currentPlayer);
-            currentPlayer.playerScore = score;
-            currentPlayer.playerTime = time / quizloader.numberOfQuestions();
+            
             switch (scorestat)
             {
                 case ScoreStat.NewScore:
@@ -475,12 +493,29 @@ namespace QuizGame
                 if (name != null && name != "")
                 {
                     setPlayer(name);
-                    playernamebtn.Text = currentPlayer.playerName;
-                    playernamebtn.Enabled = false;
+                    //playernamebtn.Text = currentPlayer.playerName;
+                    //playernamebtn.Enabled = false;
                 }
                 isAsked = true;
+            } else
+            {
+                dropdowntimer.Start();
             }
 
+        }
+
+        private void changeplayerbtn_Click(object sender, EventArgs e)
+        {
+            iscollapsed = true;
+            dropdowntimer.Start();
+            string name = InputDialog.ShowDialog("Enter name (or leave blank to play as guest): ");
+            if (name != null && name != "")
+                setPlayer(name);
+            else
+            {
+                currentPlayer = null;
+                playernamebtn.Text = "Guest";
+            }
         }
 
         private void setPlayer(string name)
@@ -492,32 +527,52 @@ namespace QuizGame
             {
                 if (player.passkey != "" && player.passkey != null)
                 {
-                    key = InputDialog.ShowDialog("Enter your key: ");
-                    if (key == player.passkey)
+                    key = InputDialog.ShowDialog("Enter your key: ", true);
+                    if (key == Cipher.Decrypt(player.passkey))
+                    {
                         currentPlayer = player;
+                        setkeybtn.Enabled = false;
+                    }   
                     else
                     {
+                        currentPlayer = new Scores();
                         if (int.TryParse(player.playerName.Last().ToString(), out num))
                             currentPlayer.playerName = player.playerName + (num + 1);
                         else
                             currentPlayer.playerName = player.playerName + 1;
                         currentPlayer.passkey = "";
+                        setkeybtn.Enabled = true;
                     }
-
+                    
                 } else
                 {
                     currentPlayer = player;
-                    currentPlayer.passkey = "";
                 }
                     
             }
             else
             {
-                Trace.WriteLine("SetPlayer");
                 currentPlayer = new Scores();
-                currentPlayer.playerName = name.ToFirstCharUpper();
+                currentPlayer.playerName = name.Trim().ToFirstCharUpper();
+                key = InputDialog.ShowDialog("Enter a key (leave blank if you don't want it): ", true);
+                if (key != null && key.Trim() != "")
+                {
+                    currentPlayer.passkey = Cipher.Encrypt(key);
+                    setkeybtn.Enabled = false;
+                }
+                else
+                {
+                    currentPlayer.passkey = "";
+                    setkeybtn.Enabled = true;
+                }
             }
-            
+            playernamebtn.Text = currentPlayer.playerName;
+
+        }
+
+        private void setkeybtn_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void highScoreTablePaintEvent(object sender, PaintEventArgs e)
@@ -544,6 +599,37 @@ namespace QuizGame
             };
         }
 
+        private void dropdownTransition(object sender, EventArgs e)
+        {
+            if(iscollapsed)
+            {
+                dropdownpanel.Height -= 15;
+                if(dropdownpanel.Size == dropdownpanel.MinimumSize)
+                {
+                    dropdowntimer.Stop();
+                    iscollapsed = false;
+                }
+            }
+            else
+            {
+                dropdownpanel.Height += 15;
+                if (dropdownpanel.Size == dropdownpanel.MaximumSize)
+                {
+                    dropdowntimer.Stop();
+                    iscollapsed = true;
+                }
+            }
+        }
+
+        private void displayHistory(string lastplayer="None", string lastscore="None")
+        {
+            lastplayernamelb.Text = lastplayer;
+            lastgamescorelb.Text = lastscore;
+            highplayernamelb.Text = scoreloader.highPlayer.playerName;
+            highestscorelb.Text = scoreloader.highPlayer.playerScore.ToString();
+        }
+
+
         private static void SetDoubleBuffered(Control c)
         {
             if (System.Windows.Forms.SystemInformation.TerminalServerSession)
@@ -558,16 +644,16 @@ namespace QuizGame
             Application.Exit();
         }
 
-        private void transit()
-        {
-            //multiple property transition
-            Transition tr = new Transition(new TransitionType_EaseInEaseOut(2000));
-            tr.add(questionlb, "Left", 200);
-            tr.run();
+        //private void transit()
+        //{
+        //    //multiple property transition
+        //    Transition tr = new Transition(new TransitionType_EaseInEaseOut(2000));
+        //    tr.add(questionlb, "Left", 200);
+        //    tr.run();
 
-            //single property transtion
-            Transition.run(questionlb, "ForeColor", Color.Red, new TransitionType_Bounce(1500));
-        }
+        //    //single property transtion
+        //    Transition.run(questionlb, "ForeColor", Color.Red, new TransitionType_Bounce(1500));
+        //}
         
         
     }

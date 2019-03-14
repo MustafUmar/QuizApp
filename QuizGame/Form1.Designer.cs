@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.quizdisplaypanel = new System.Windows.Forms.Panel();
+            this.quizdisplaypane = new System.Windows.Forms.FlowLayoutPanel();
             this.questlb = new System.Windows.Forms.Label();
             this.startbtn = new System.Windows.Forms.Button();
             this.wronglb = new System.Windows.Forms.Label();
@@ -61,6 +62,8 @@
             this.option4lb = new System.Windows.Forms.Label();
             this.menupanel = new System.Windows.Forms.Panel();
             this.topmenupanel = new System.Windows.Forms.Panel();
+            this.dropdownpanel = new System.Windows.Forms.Panel();
+            this.changeplayerbtn = new System.Windows.Forms.Button();
             this.playernamebtn = new System.Windows.Forms.Button();
             this.vlinelb = new System.Windows.Forms.Label();
             this.playerlb = new System.Windows.Forms.Label();
@@ -68,10 +71,14 @@
             this.quitbtn = new System.Windows.Forms.Button();
             this.highscorebtn = new System.Windows.Forms.Button();
             this.historypanel = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.highestscorelb = new System.Windows.Forms.Label();
+            this.highplayernamelb = new System.Windows.Forms.Label();
+            this.lastgamescorelb = new System.Windows.Forms.Label();
+            this.lastplayernamelb = new System.Windows.Forms.Label();
+            this.lastscorelb = new System.Windows.Forms.Label();
+            this.highscorelb = new System.Windows.Forms.Label();
+            this.highplayerlb = new System.Windows.Forms.Label();
+            this.lastplayerlb = new System.Windows.Forms.Label();
             this.highscorepanel = new System.Windows.Forms.Panel();
             this.backmenubtn = new System.Windows.Forms.Button();
             this.scorecontentpanel = new System.Windows.Forms.Panel();
@@ -86,8 +93,10 @@
             this.curscorelb = new System.Windows.Forms.Label();
             this.yourscorelb = new System.Windows.Forms.Label();
             this.curplayernamelb = new System.Windows.Forms.Label();
-            this.quizdisplaypane = new System.Windows.Forms.FlowLayoutPanel();
+            this.dropdowntimer = new System.Windows.Forms.Timer(this.components);
+            this.setkeybtn = new System.Windows.Forms.Button();
             this.quizdisplaypanel.SuspendLayout();
+            this.quizdisplaypane.SuspendLayout();
             this.quizpanel.SuspendLayout();
             this.optionsgrid.SuspendLayout();
             this.flowpaneA.SuspendLayout();
@@ -96,12 +105,12 @@
             this.flowpaneD.SuspendLayout();
             this.menupanel.SuspendLayout();
             this.topmenupanel.SuspendLayout();
+            this.dropdownpanel.SuspendLayout();
             this.historypanel.SuspendLayout();
             this.highscorepanel.SuspendLayout();
             this.scorecontentpanel.SuspendLayout();
             this.highscoretable.SuspendLayout();
             this.currentscorepanel.SuspendLayout();
-            this.quizdisplaypane.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -119,6 +128,17 @@
             this.quizdisplaypanel.Name = "quizdisplaypanel";
             this.quizdisplaypanel.Size = new System.Drawing.Size(516, 186);
             this.quizdisplaypanel.TabIndex = 1;
+            // 
+            // quizdisplaypane
+            // 
+            this.quizdisplaypane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.quizdisplaypane.Controls.Add(this.questlb);
+            this.quizdisplaypane.Location = new System.Drawing.Point(167, 15);
+            this.quizdisplaypane.Name = "quizdisplaypane";
+            this.quizdisplaypane.Size = new System.Drawing.Size(497, 157);
+            this.quizdisplaypane.TabIndex = 1;
             // 
             // questlb
             // 
@@ -145,7 +165,7 @@
             this.startbtn.Name = "startbtn";
             this.startbtn.Size = new System.Drawing.Size(194, 52);
             this.startbtn.TabIndex = 2;
-            this.startbtn.Text = "Start";
+            this.startbtn.Text = "Play";
             this.startbtn.UseVisualStyleBackColor = false;
             this.startbtn.Click += new System.EventHandler(this.startbtn_Click);
             // 
@@ -203,16 +223,18 @@
             // closebtn
             // 
             this.closebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.closebtn.BackColor = System.Drawing.Color.Crimson;
+            this.closebtn.BackColor = System.Drawing.Color.LightSlateGray;
+            this.closebtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.closebtn.FlatAppearance.BorderColor = System.Drawing.Color.FloralWhite;
+            this.closebtn.FlatAppearance.BorderSize = 0;
             this.closebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closebtn.ForeColor = System.Drawing.Color.Snow;
-            this.closebtn.Location = new System.Drawing.Point(624, 20);
+            this.closebtn.Image = ((System.Drawing.Image)(resources.GetObject("closebtn.Image")));
+            this.closebtn.Location = new System.Drawing.Point(614, 12);
             this.closebtn.Name = "closebtn";
-            this.closebtn.Size = new System.Drawing.Size(48, 38);
+            this.closebtn.Size = new System.Drawing.Size(58, 49);
             this.closebtn.TabIndex = 14;
-            this.closebtn.Text = "X";
             this.closebtn.UseVisualStyleBackColor = false;
             this.closebtn.Click += new System.EventHandler(this.closelb_Click);
             // 
@@ -486,6 +508,7 @@
             // menupanel
             // 
             this.menupanel.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.menupanel.Controls.Add(this.dropdownpanel);
             this.menupanel.Controls.Add(this.topmenupanel);
             this.menupanel.Controls.Add(this.quitbtn);
             this.menupanel.Controls.Add(this.highscorebtn);
@@ -510,6 +533,34 @@
             this.topmenupanel.Size = new System.Drawing.Size(684, 72);
             this.topmenupanel.TabIndex = 1;
             // 
+            // dropdownpanel
+            // 
+            this.dropdownpanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dropdownpanel.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.dropdownpanel.Controls.Add(this.setkeybtn);
+            this.dropdownpanel.Controls.Add(this.changeplayerbtn);
+            this.dropdownpanel.Location = new System.Drawing.Point(537, 59);
+            this.dropdownpanel.MaximumSize = new System.Drawing.Size(122, 75);
+            this.dropdownpanel.MinimumSize = new System.Drawing.Size(122, 0);
+            this.dropdownpanel.Name = "dropdownpanel";
+            this.dropdownpanel.Size = new System.Drawing.Size(122, 0);
+            this.dropdownpanel.TabIndex = 6;
+            // 
+            // changeplayerbtn
+            // 
+            this.changeplayerbtn.BackColor = System.Drawing.Color.Teal;
+            this.changeplayerbtn.FlatAppearance.BorderColor = System.Drawing.Color.LemonChiffon;
+            this.changeplayerbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.changeplayerbtn.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.changeplayerbtn.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.changeplayerbtn.Location = new System.Drawing.Point(0, 0);
+            this.changeplayerbtn.Name = "changeplayerbtn";
+            this.changeplayerbtn.Size = new System.Drawing.Size(122, 36);
+            this.changeplayerbtn.TabIndex = 10;
+            this.changeplayerbtn.Text = "Change Player";
+            this.changeplayerbtn.UseVisualStyleBackColor = false;
+            this.changeplayerbtn.Click += new System.EventHandler(this.changeplayerbtn_Click);
+            // 
             // playernamebtn
             // 
             this.playernamebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -517,9 +568,9 @@
             this.playernamebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playernamebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playernamebtn.ForeColor = System.Drawing.Color.Cornsilk;
-            this.playernamebtn.Location = new System.Drawing.Point(558, 29);
+            this.playernamebtn.Location = new System.Drawing.Point(537, 29);
             this.playernamebtn.Name = "playernamebtn";
-            this.playernamebtn.Size = new System.Drawing.Size(84, 29);
+            this.playernamebtn.Size = new System.Drawing.Size(122, 29);
             this.playernamebtn.TabIndex = 9;
             this.playernamebtn.Text = "Guest";
             this.playernamebtn.UseVisualStyleBackColor = true;
@@ -598,55 +649,111 @@
             // historypanel
             // 
             this.historypanel.BackColor = System.Drawing.Color.LightSlateGray;
-            this.historypanel.Controls.Add(this.label4);
-            this.historypanel.Controls.Add(this.label3);
-            this.historypanel.Controls.Add(this.label2);
-            this.historypanel.Controls.Add(this.label1);
+            this.historypanel.Controls.Add(this.highestscorelb);
+            this.historypanel.Controls.Add(this.highplayernamelb);
+            this.historypanel.Controls.Add(this.lastgamescorelb);
+            this.historypanel.Controls.Add(this.lastplayernamelb);
+            this.historypanel.Controls.Add(this.lastscorelb);
+            this.historypanel.Controls.Add(this.highscorelb);
+            this.historypanel.Controls.Add(this.highplayerlb);
+            this.historypanel.Controls.Add(this.lastplayerlb);
             this.historypanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.historypanel.Location = new System.Drawing.Point(0, 403);
             this.historypanel.Name = "historypanel";
             this.historypanel.Size = new System.Drawing.Size(684, 122);
             this.historypanel.TabIndex = 3;
             // 
-            // label4
+            // highestscorelb
             // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.label4.Location = new System.Drawing.Point(88, 52);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Last Game Score:";
+            this.highestscorelb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.highestscorelb.AutoSize = true;
+            this.highestscorelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.highestscorelb.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.highestscorelb.Location = new System.Drawing.Point(497, 52);
+            this.highestscorelb.Name = "highestscorelb";
+            this.highestscorelb.Size = new System.Drawing.Size(13, 13);
+            this.highestscorelb.TabIndex = 7;
+            this.highestscorelb.Text = "_";
             // 
-            // label3
+            // highplayernamelb
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.label3.Location = new System.Drawing.Point(414, 52);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Highest Score:";
+            this.highplayernamelb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.highplayernamelb.AutoSize = true;
+            this.highplayernamelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.highplayernamelb.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.highplayernamelb.Location = new System.Drawing.Point(497, 25);
+            this.highplayernamelb.Name = "highplayernamelb";
+            this.highplayernamelb.Size = new System.Drawing.Size(13, 13);
+            this.highplayernamelb.TabIndex = 6;
+            this.highplayernamelb.Text = "_";
             // 
-            // label2
+            // lastgamescorelb
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.label2.Location = new System.Drawing.Point(411, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Highest Scorer:";
+            this.lastgamescorelb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lastgamescorelb.AutoSize = true;
+            this.lastgamescorelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lastgamescorelb.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.lastgamescorelb.Location = new System.Drawing.Point(186, 52);
+            this.lastgamescorelb.Name = "lastgamescorelb";
+            this.lastgamescorelb.Size = new System.Drawing.Size(13, 13);
+            this.lastgamescorelb.TabIndex = 5;
+            this.lastgamescorelb.Text = "_";
             // 
-            // label1
+            // lastplayernamelb
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.label1.Location = new System.Drawing.Point(88, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Last Played By:";
+            this.lastplayernamelb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lastplayernamelb.AutoSize = true;
+            this.lastplayernamelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lastplayernamelb.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.lastplayernamelb.Location = new System.Drawing.Point(174, 25);
+            this.lastplayernamelb.Name = "lastplayernamelb";
+            this.lastplayernamelb.Size = new System.Drawing.Size(13, 13);
+            this.lastplayernamelb.TabIndex = 4;
+            this.lastplayernamelb.Text = "_";
+            // 
+            // lastscorelb
+            // 
+            this.lastscorelb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lastscorelb.AutoSize = true;
+            this.lastscorelb.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.lastscorelb.Location = new System.Drawing.Point(88, 52);
+            this.lastscorelb.Name = "lastscorelb";
+            this.lastscorelb.Size = new System.Drawing.Size(92, 13);
+            this.lastscorelb.TabIndex = 3;
+            this.lastscorelb.Text = "Last Game Score:";
+            // 
+            // highscorelb
+            // 
+            this.highscorelb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.highscorelb.AutoSize = true;
+            this.highscorelb.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.highscorelb.Location = new System.Drawing.Point(414, 52);
+            this.highscorelb.Name = "highscorelb";
+            this.highscorelb.Size = new System.Drawing.Size(77, 13);
+            this.highscorelb.TabIndex = 2;
+            this.highscorelb.Text = "Highest Score:";
+            // 
+            // highplayerlb
+            // 
+            this.highplayerlb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.highplayerlb.AutoSize = true;
+            this.highplayerlb.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.highplayerlb.Location = new System.Drawing.Point(411, 25);
+            this.highplayerlb.Name = "highplayerlb";
+            this.highplayerlb.Size = new System.Drawing.Size(80, 13);
+            this.highplayerlb.TabIndex = 1;
+            this.highplayerlb.Text = "Highest Scorer:";
+            // 
+            // lastplayerlb
+            // 
+            this.lastplayerlb.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lastplayerlb.AutoSize = true;
+            this.lastplayerlb.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.lastplayerlb.Location = new System.Drawing.Point(88, 25);
+            this.lastplayerlb.Name = "lastplayerlb";
+            this.lastplayerlb.Size = new System.Drawing.Size(80, 13);
+            this.lastplayerlb.TabIndex = 0;
+            this.lastplayerlb.Text = "Last Played By:";
             // 
             // highscorepanel
             // 
@@ -717,11 +824,11 @@
             this.avgtimehdlb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.avgtimehdlb.AutoSize = true;
             this.avgtimehdlb.Font = new System.Drawing.Font("Imprint MT Shadow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.avgtimehdlb.Location = new System.Drawing.Point(392, 8);
+            this.avgtimehdlb.Location = new System.Drawing.Point(387, 8);
             this.avgtimehdlb.Name = "avgtimehdlb";
-            this.avgtimehdlb.Size = new System.Drawing.Size(86, 19);
+            this.avgtimehdlb.Size = new System.Drawing.Size(96, 19);
             this.avgtimehdlb.TabIndex = 3;
-            this.avgtimehdlb.Text = "Avg Time";
+            this.avgtimehdlb.Text = "Total Time";
             // 
             // scorehdlb
             // 
@@ -827,25 +934,37 @@
             this.curplayernamelb.TabIndex = 0;
             this.curplayernamelb.Text = "Meta";
             // 
-            // quizdisplaypane
+            // dropdowntimer
             // 
-            this.quizdisplaypane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.quizdisplaypane.Controls.Add(this.questlb);
-            this.quizdisplaypane.Location = new System.Drawing.Point(167, 15);
-            this.quizdisplaypane.Name = "quizdisplaypane";
-            this.quizdisplaypane.Size = new System.Drawing.Size(497, 157);
-            this.quizdisplaypane.TabIndex = 1;
+            this.dropdowntimer.Interval = 20;
+            this.dropdowntimer.Tick += new System.EventHandler(this.dropdownTransition);
+            // 
+            // setkeybtn
+            // 
+            this.setkeybtn.BackColor = System.Drawing.Color.Teal;
+            this.setkeybtn.Enabled = false;
+            this.setkeybtn.FlatAppearance.BorderColor = System.Drawing.Color.LemonChiffon;
+            this.setkeybtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.setkeybtn.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.setkeybtn.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.setkeybtn.Location = new System.Drawing.Point(0, 36);
+            this.setkeybtn.Name = "setkeybtn";
+            this.setkeybtn.Size = new System.Drawing.Size(122, 36);
+            this.setkeybtn.TabIndex = 11;
+            this.setkeybtn.Text = "Set key";
+            this.setkeybtn.UseVisualStyleBackColor = false;
+            this.setkeybtn.Click += new System.EventHandler(this.setkeybtn_Click);
             // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(684, 525);
-            this.Controls.Add(this.quizpanel);
+            this.Controls.Add(this.menupanel);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QuizMania";
             this.quizdisplaypanel.ResumeLayout(false);
+            this.quizdisplaypane.ResumeLayout(false);
+            this.quizdisplaypane.PerformLayout();
             this.quizpanel.ResumeLayout(false);
             this.quizpanel.PerformLayout();
             this.optionsgrid.ResumeLayout(false);
@@ -861,6 +980,7 @@
             this.menupanel.ResumeLayout(false);
             this.topmenupanel.ResumeLayout(false);
             this.topmenupanel.PerformLayout();
+            this.dropdownpanel.ResumeLayout(false);
             this.historypanel.ResumeLayout(false);
             this.historypanel.PerformLayout();
             this.highscorepanel.ResumeLayout(false);
@@ -871,8 +991,6 @@
             this.highscoretable.PerformLayout();
             this.currentscorepanel.ResumeLayout(false);
             this.currentscorepanel.PerformLayout();
-            this.quizdisplaypane.ResumeLayout(false);
-            this.quizdisplaypane.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -892,10 +1010,10 @@
         private System.Windows.Forms.Button quitbtn;
         private System.Windows.Forms.Button highscorebtn;
         private System.Windows.Forms.Panel historypanel;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lastscorelb;
+        private System.Windows.Forms.Label highscorelb;
+        private System.Windows.Forms.Label highplayerlb;
+        private System.Windows.Forms.Label lastplayerlb;
         private System.Windows.Forms.Panel highscorepanel;
         private System.Windows.Forms.Label highscoreheaderlb;
         private System.Windows.Forms.TableLayoutPanel highscoretable;
@@ -935,6 +1053,14 @@
         private System.Windows.Forms.Button playernamebtn;
         private System.Windows.Forms.Label vlinelb;
         private System.Windows.Forms.FlowLayoutPanel quizdisplaypane;
+        private System.Windows.Forms.Label highestscorelb;
+        private System.Windows.Forms.Label highplayernamelb;
+        private System.Windows.Forms.Label lastgamescorelb;
+        private System.Windows.Forms.Label lastplayernamelb;
+        private System.Windows.Forms.Panel dropdownpanel;
+        private System.Windows.Forms.Button changeplayerbtn;
+        private System.Windows.Forms.Timer dropdowntimer;
+        private System.Windows.Forms.Button setkeybtn;
     }
 }
 

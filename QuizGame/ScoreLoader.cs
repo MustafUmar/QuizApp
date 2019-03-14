@@ -12,7 +12,7 @@ namespace QuizGame
     {
         private bool Isloaded = false;
         public List<Scores> scores { get; set; }
-        public Scores currentPlayer { get; set; }
+        public Scores highPlayer { get; set; }
 
         public ScoreLoader()
         {
@@ -28,6 +28,8 @@ namespace QuizGame
                     .OrderByDescending(s => s.playerScore)
                     .ThenBy(s => s.playerTime)
                     .ToList();
+
+                highPlayer = scores.First();
                 
                 Isloaded = true;
             }
@@ -55,7 +57,7 @@ namespace QuizGame
                             scores[oldscore].playerTime = newscore.playerTime;
 
                             try { saveScores(); }
-                            catch (IOException e)
+                            catch (IOException)
                             { return ScoreStat.Missing; }
 
                             return ScoreStat.Updated;
@@ -76,7 +78,7 @@ namespace QuizGame
                                                 .ThenBy(s => s.playerTime)
                                                 .ToList();
                                 try { saveScores(); }
-                                catch (IOException e)
+                                catch (IOException)
                                 { return ScoreStat.Missing; }
 
                                 return ScoreStat.NewScore;
@@ -89,7 +91,7 @@ namespace QuizGame
                                             .ThenBy(s => s.playerTime)
                                             .ToList();
                             try { saveScores(); }
-                            catch (IOException e)
+                            catch (IOException)
                             { return ScoreStat.Missing; }
 
                             return ScoreStat.NewScore;
@@ -132,7 +134,17 @@ namespace QuizGame
 
         public Scores getPlayer(string name)
         {
-            return scores.Find(s => s.playerName.Equals(name.ToFirstCharUpper()));   
+            return scores.Find(s => s.playerName.Equals(name.ToFirstCharUpper()));
+        }
+
+        public void updateKey(Scores player, string newkey)
+        {
+            int index = scores.FindIndex(s => s.playerName.Equals(player.playerName) && s.passkey.Equals(player.passkey));
+            if(index > -1)
+            {
+                scores[index].passkey = Cipher.Encrypt(newkey);
+                saveScores();
+            }
         }
     }
 }

@@ -14,8 +14,6 @@ namespace QuizGame
         private List<Quiz> quizzes;
         private int currentq = 0;
         private int currentIndex;
-        private bool started = false;
-        private bool end = false;
         private int numofquestions;
         private QuizTypes loadedquiz;
         private Random rndanswers;
@@ -59,24 +57,7 @@ namespace QuizGame
                 {
                     questions = sr.ReadToEnd();
                 }
-                    //string questions = @"[
-                    //    {
-                    //        'question':'What is the name of the main actor of the movie - The terminator?',
-                    //        'choices':['Keanu Reaves','Arnold Swachzeneggar','Denzel Washington','Christian Bale'],
-                    //        'answer': 'bCbfGVVC0hSOGNDDaRSDz0V7OsvNXYO7NhxbUCTxIsaKadmC3ex34lA3j2WBVj+N'
-                    //    },
-                    //    {
-                    //        ""question"":""Which is the meaning of NIIT?"",
-                    //        ""choices"":['National Indepenent Industrial Technology','National Institute of Industrial Technology',
-                    //                        'Nation of Indutrial Indian Technology','National Institute of Information Technology'],
-                    //        ""answer"": 'WSQU6deAFU/LQRzh+XPUsMbGQim+ab/Y67RdwOHb2TXQoJSR8n5OvQinIvN5yDWLurYEshGrY/ALKG7hwk0NyEAy4fY5JCecwH7EnKhiwKpVZT6nhSh0NbpghOWUx6IV'
-                    //    },
-                    //    {
-                    //        'question':'Fish are cold blooded animals.',
-                    //        'choices':['True','False','Both','None'],
-                    //        'answer': 'ELpwUqZ0NM615wd2eGNf+w=='
-                    //    }
-                    //]";
+                   
                 quizzes = JsonConvert.DeserializeObject<List<Quiz>>(questions);
                 Shuffle();
                 currentq = 1;
@@ -89,7 +70,6 @@ namespace QuizGame
 
 
 
-            //started = true;
             //shuffle quiz
             quizzes[currentIndex].choices = shuffleAnswers(quizzes[currentIndex].choices);
             return quizzes[currentIndex];
@@ -105,12 +85,6 @@ namespace QuizGame
             quizzes[currentIndex].choices = shuffleAnswers(quizzes[currentIndex].choices);
             return quizzes[currentIndex];   
         }
-
-        //public bool checkAnswer(string choice)
-        //{
-        //    Quiz q = quizzes[currentq];
-        //    return Array.Exists(q.choices, el => el.IndexOf(choice) == q.answer);
-        //}
 
         public int numberOfQuestions()
         {
