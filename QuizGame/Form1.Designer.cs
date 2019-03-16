@@ -39,6 +39,7 @@
             this.correctlb = new System.Windows.Forms.Label();
             this.optionA = new System.Windows.Forms.RadioButton();
             this.quizpanel = new System.Windows.Forms.Panel();
+            this.curnamequizlb = new System.Windows.Forms.Label();
             this.closebtn = new System.Windows.Forms.Button();
             this.countdownbar = new System.Windows.Forms.ProgressBar();
             this.curnumscorelb = new System.Windows.Forms.Label();
@@ -61,9 +62,10 @@
             this.flowpaneD = new System.Windows.Forms.FlowLayoutPanel();
             this.option4lb = new System.Windows.Forms.Label();
             this.menupanel = new System.Windows.Forms.Panel();
-            this.topmenupanel = new System.Windows.Forms.Panel();
             this.dropdownpanel = new System.Windows.Forms.Panel();
+            this.setkeybtn = new System.Windows.Forms.Button();
             this.changeplayerbtn = new System.Windows.Forms.Button();
+            this.topmenupanel = new System.Windows.Forms.Panel();
             this.playernamebtn = new System.Windows.Forms.Button();
             this.vlinelb = new System.Windows.Forms.Label();
             this.playerlb = new System.Windows.Forms.Label();
@@ -94,7 +96,6 @@
             this.yourscorelb = new System.Windows.Forms.Label();
             this.curplayernamelb = new System.Windows.Forms.Label();
             this.dropdowntimer = new System.Windows.Forms.Timer(this.components);
-            this.setkeybtn = new System.Windows.Forms.Button();
             this.quizdisplaypanel.SuspendLayout();
             this.quizdisplaypane.SuspendLayout();
             this.quizpanel.SuspendLayout();
@@ -104,8 +105,8 @@
             this.flowpaneC.SuspendLayout();
             this.flowpaneD.SuspendLayout();
             this.menupanel.SuspendLayout();
-            this.topmenupanel.SuspendLayout();
             this.dropdownpanel.SuspendLayout();
+            this.topmenupanel.SuspendLayout();
             this.historypanel.SuspendLayout();
             this.highscorepanel.SuspendLayout();
             this.scorecontentpanel.SuspendLayout();
@@ -204,6 +205,7 @@
             // 
             this.quizpanel.AutoScroll = true;
             this.quizpanel.BackColor = System.Drawing.Color.LightSlateGray;
+            this.quizpanel.Controls.Add(this.curnamequizlb);
             this.quizpanel.Controls.Add(this.closebtn);
             this.quizpanel.Controls.Add(this.countdownbar);
             this.quizpanel.Controls.Add(this.curnumscorelb);
@@ -219,6 +221,18 @@
             this.quizpanel.Name = "quizpanel";
             this.quizpanel.Size = new System.Drawing.Size(684, 525);
             this.quizpanel.TabIndex = 4;
+            // 
+            // curnamequizlb
+            // 
+            this.curnamequizlb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.curnamequizlb.AutoSize = true;
+            this.curnamequizlb.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.curnamequizlb.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.curnamequizlb.Location = new System.Drawing.Point(552, 47);
+            this.curnamequizlb.Name = "curnamequizlb";
+            this.curnamequizlb.Size = new System.Drawing.Size(43, 17);
+            this.curnamequizlb.TabIndex = 15;
+            this.curnamequizlb.Text = "Guest";
             // 
             // closebtn
             // 
@@ -267,7 +281,7 @@
             this.questtotallb.AutoSize = true;
             this.questtotallb.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.questtotallb.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.questtotallb.Location = new System.Drawing.Point(190, 45);
+            this.questtotallb.Location = new System.Drawing.Point(193, 45);
             this.questtotallb.Name = "questtotallb";
             this.questtotallb.Size = new System.Drawing.Size(14, 17);
             this.questtotallb.TabIndex = 11;
@@ -278,7 +292,7 @@
             this.questoflb.AutoSize = true;
             this.questoflb.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.questoflb.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.questoflb.Location = new System.Drawing.Point(165, 47);
+            this.questoflb.Location = new System.Drawing.Point(169, 47);
             this.questoflb.Name = "questoflb";
             this.questoflb.Size = new System.Drawing.Size(18, 15);
             this.questoflb.TabIndex = 10;
@@ -300,7 +314,7 @@
             this.questionlb.AutoSize = true;
             this.questionlb.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.questionlb.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.questionlb.Location = new System.Drawing.Point(80, 47);
+            this.questionlb.Location = new System.Drawing.Point(80, 44);
             this.questionlb.Name = "questionlb";
             this.questionlb.Size = new System.Drawing.Size(71, 17);
             this.questionlb.TabIndex = 8;
@@ -520,19 +534,6 @@
             this.menupanel.Size = new System.Drawing.Size(684, 525);
             this.menupanel.TabIndex = 0;
             // 
-            // topmenupanel
-            // 
-            this.topmenupanel.BackColor = System.Drawing.Color.LightSlateGray;
-            this.topmenupanel.Controls.Add(this.playernamebtn);
-            this.topmenupanel.Controls.Add(this.vlinelb);
-            this.topmenupanel.Controls.Add(this.playerlb);
-            this.topmenupanel.Controls.Add(this.label6);
-            this.topmenupanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.topmenupanel.Location = new System.Drawing.Point(0, 0);
-            this.topmenupanel.Name = "topmenupanel";
-            this.topmenupanel.Size = new System.Drawing.Size(684, 72);
-            this.topmenupanel.TabIndex = 1;
-            // 
             // dropdownpanel
             // 
             this.dropdownpanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -545,6 +546,22 @@
             this.dropdownpanel.Name = "dropdownpanel";
             this.dropdownpanel.Size = new System.Drawing.Size(122, 0);
             this.dropdownpanel.TabIndex = 6;
+            // 
+            // setkeybtn
+            // 
+            this.setkeybtn.BackColor = System.Drawing.Color.Teal;
+            this.setkeybtn.Enabled = false;
+            this.setkeybtn.FlatAppearance.BorderColor = System.Drawing.Color.LemonChiffon;
+            this.setkeybtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.setkeybtn.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.setkeybtn.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.setkeybtn.Location = new System.Drawing.Point(0, 36);
+            this.setkeybtn.Name = "setkeybtn";
+            this.setkeybtn.Size = new System.Drawing.Size(122, 36);
+            this.setkeybtn.TabIndex = 11;
+            this.setkeybtn.Text = "Set key";
+            this.setkeybtn.UseVisualStyleBackColor = false;
+            this.setkeybtn.Click += new System.EventHandler(this.setkeybtn_Click);
             // 
             // changeplayerbtn
             // 
@@ -560,6 +577,19 @@
             this.changeplayerbtn.Text = "Change Player";
             this.changeplayerbtn.UseVisualStyleBackColor = false;
             this.changeplayerbtn.Click += new System.EventHandler(this.changeplayerbtn_Click);
+            // 
+            // topmenupanel
+            // 
+            this.topmenupanel.BackColor = System.Drawing.Color.LightSlateGray;
+            this.topmenupanel.Controls.Add(this.playernamebtn);
+            this.topmenupanel.Controls.Add(this.vlinelb);
+            this.topmenupanel.Controls.Add(this.playerlb);
+            this.topmenupanel.Controls.Add(this.label6);
+            this.topmenupanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.topmenupanel.Location = new System.Drawing.Point(0, 0);
+            this.topmenupanel.Name = "topmenupanel";
+            this.topmenupanel.Size = new System.Drawing.Size(684, 72);
+            this.topmenupanel.TabIndex = 1;
             // 
             // playernamebtn
             // 
@@ -824,11 +854,11 @@
             this.avgtimehdlb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.avgtimehdlb.AutoSize = true;
             this.avgtimehdlb.Font = new System.Drawing.Font("Imprint MT Shadow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.avgtimehdlb.Location = new System.Drawing.Point(387, 8);
+            this.avgtimehdlb.Location = new System.Drawing.Point(377, 8);
             this.avgtimehdlb.Name = "avgtimehdlb";
-            this.avgtimehdlb.Size = new System.Drawing.Size(96, 19);
+            this.avgtimehdlb.Size = new System.Drawing.Size(115, 19);
             this.avgtimehdlb.TabIndex = 3;
-            this.avgtimehdlb.Text = "Total Time";
+            this.avgtimehdlb.Text = "Total Time(s)";
             // 
             // scorehdlb
             // 
@@ -939,22 +969,6 @@
             this.dropdowntimer.Interval = 20;
             this.dropdowntimer.Tick += new System.EventHandler(this.dropdownTransition);
             // 
-            // setkeybtn
-            // 
-            this.setkeybtn.BackColor = System.Drawing.Color.Teal;
-            this.setkeybtn.Enabled = false;
-            this.setkeybtn.FlatAppearance.BorderColor = System.Drawing.Color.LemonChiffon;
-            this.setkeybtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.setkeybtn.Font = new System.Drawing.Font("Georgia", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.setkeybtn.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.setkeybtn.Location = new System.Drawing.Point(0, 36);
-            this.setkeybtn.Name = "setkeybtn";
-            this.setkeybtn.Size = new System.Drawing.Size(122, 36);
-            this.setkeybtn.TabIndex = 11;
-            this.setkeybtn.Text = "Set key";
-            this.setkeybtn.UseVisualStyleBackColor = false;
-            this.setkeybtn.Click += new System.EventHandler(this.setkeybtn_Click);
-            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(684, 525);
@@ -978,9 +992,9 @@
             this.flowpaneD.ResumeLayout(false);
             this.flowpaneD.PerformLayout();
             this.menupanel.ResumeLayout(false);
+            this.dropdownpanel.ResumeLayout(false);
             this.topmenupanel.ResumeLayout(false);
             this.topmenupanel.PerformLayout();
-            this.dropdownpanel.ResumeLayout(false);
             this.historypanel.ResumeLayout(false);
             this.historypanel.PerformLayout();
             this.highscorepanel.ResumeLayout(false);
@@ -1061,6 +1075,7 @@
         private System.Windows.Forms.Button changeplayerbtn;
         private System.Windows.Forms.Timer dropdowntimer;
         private System.Windows.Forms.Button setkeybtn;
+        private System.Windows.Forms.Label curnamequizlb;
     }
 }
 

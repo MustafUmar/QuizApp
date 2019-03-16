@@ -91,6 +91,7 @@ namespace QuizGame
             this.Controls.Clear();
             ended = false;
             resetContent();
+            stopwatch.Reset();
             //timer1.Tick -= timer1_Tick;
             score = 0;
             time = 0;
@@ -108,6 +109,7 @@ namespace QuizGame
             
             //timer1.Tick += timer1_Tick;
             timer1.Start();
+            stopwatch.Start();
         }
 
         private void choosedOption(object sender, EventArgs e)
@@ -173,13 +175,13 @@ namespace QuizGame
                 //scoring against time
                 //if time is less than 7 secs, minus the score
                 if ((timeleft > 7000))
-                    score += 10;
+                    score += 100;
                 else if (timeleft > 4000)
-                    score += 8;
+                    score += 80;
                 else if (timeleft > 2000)
-                    score += 6;
+                    score += 60;
                 else
-                    score += 5;
+                    score += 50;
 
                 //update ui score
                 curnumscorelb.Text = score.ToString();
@@ -237,7 +239,7 @@ namespace QuizGame
                     popsound.Play();
                     tick.Play();
                     timer1.Start();
-                    stopwatch.Restart();
+                    stopwatch.Start();
                 }
                 else
                     Stop();
@@ -280,7 +282,7 @@ namespace QuizGame
             }
             timer1.Enabled = false;
             timer1.Enabled = true;
-            stopwatch.Reset();
+            //stopwatch.Reset();
         }
 
         private void Stop()
@@ -521,7 +523,7 @@ namespace QuizGame
         private void setPlayer(string name)
         {
             int num;
-            string key;
+            string key, confkey;
             Scores player = scoreloader.getPlayer(name.ToFirstCharUpper());
             if (player != null)
             {
@@ -554,11 +556,16 @@ namespace QuizGame
             {
                 currentPlayer = new Scores();
                 currentPlayer.playerName = name.Trim().ToFirstCharUpper();
-                key = InputDialog.ShowDialog("Enter a key (leave blank if you don't want it): ", true);
+                key = InputDialog.ShowDialog("Enter a key (leave blank if you don't want any): ", true);
                 if (key != null && key.Trim() != "")
                 {
-                    currentPlayer.passkey = Cipher.Encrypt(key);
-                    setkeybtn.Enabled = false;
+                    confkey = InputDialog.ShowDialog("Confirm key: ", true);
+                    if(confkey.Equals(key))
+                    {
+                        currentPlayer.passkey = Cipher.Encrypt(key);
+                        setkeybtn.Enabled = false;
+                        MessageBox.Show("Key saved.", "Success", MessageBoxButtons.OK, MessageBoxIcon.None);
+                    }
                 }
                 else
                 {
@@ -567,12 +574,34 @@ namespace QuizGame
                 }
             }
             playernamebtn.Text = currentPlayer.playerName;
+            curnamequizlb.Text = currentPlayer.playerName;
 
         }
 
+        private void setKey(string passkey, bool tobesaved = false)
+        {
+            string key = null, confkey = null;
+            InputDialog.ShowDialog("Enter a key (leave blank if you don't want any): ", true);
+            if (key != null && key.Trim() != "")
+            {
+                confkey = InputDialog.ShowDialog("Confirm key: ", true);
+                if (confkey.Equals(key))
+                {
+                    currentPlayer.passkey = Cipher.Encrypt(key);
+                    setkeybtn.Enabled = false;
+                    MessageBox.Show("Key saved.", "Success", MessageBoxButtons.OK, MessageBoxIcon.None);
+                }
+            }
+            //else
+            //{
+            //    currentPlayer.passkey = "";
+            //    setkeybtn.Enabled = true;
+            //}
+        }
         private void setkeybtn_Click(object sender, EventArgs e)
         {
-
+            //string key = 
+            //setKey();
         }
 
         private void highScoreTablePaintEvent(object sender, PaintEventArgs e)

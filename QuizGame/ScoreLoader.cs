@@ -55,7 +55,9 @@ namespace QuizGame
                         {
                             scores[oldscore].playerScore = newscore.playerScore;
                             scores[oldscore].playerTime = newscore.playerTime;
-
+                            scores = scores.OrderByDescending(s => s.playerScore)
+                                                .ThenBy(s => s.playerTime)
+                                                .ToList();
                             try { saveScores(); }
                             catch (IOException)
                             { return ScoreStat.Missing; }
@@ -134,7 +136,8 @@ namespace QuizGame
 
         public Scores getPlayer(string name)
         {
-            return scores.Find(s => s.playerName.Equals(name.ToFirstCharUpper()));
+            //return scores.Find(s => s.playerName.Equals(name.ToFirstCharUpper()));
+            return ObjectCopy.CloneJson<Scores>(scores.Find(s => s.playerName.Equals(name.ToFirstCharUpper())));
         }
 
         public void updateKey(Scores player, string newkey)
@@ -142,8 +145,11 @@ namespace QuizGame
             int index = scores.FindIndex(s => s.playerName.Equals(player.playerName) && s.passkey.Equals(player.passkey));
             if(index > -1)
             {
-                scores[index].passkey = Cipher.Encrypt(newkey);
-                saveScores();
+                if(player.passkey != "")
+                {
+                    scores[index].passkey = Cipher.Encrypt(newkey);
+                    saveScores();
+                }
             }
         }
     }
