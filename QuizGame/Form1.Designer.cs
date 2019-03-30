@@ -62,6 +62,7 @@
             this.flowpaneD = new System.Windows.Forms.FlowLayoutPanel();
             this.option4lb = new System.Windows.Forms.Label();
             this.menupanel = new System.Windows.Forms.Panel();
+            this.instructbtn = new System.Windows.Forms.Button();
             this.dropdownpanel = new System.Windows.Forms.Panel();
             this.setkeybtn = new System.Windows.Forms.Button();
             this.changeplayerbtn = new System.Windows.Forms.Button();
@@ -162,9 +163,9 @@
             this.startbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.startbtn.Font = new System.Drawing.Font("Modern No. 20", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startbtn.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.startbtn.Location = new System.Drawing.Point(250, 120);
+            this.startbtn.Location = new System.Drawing.Point(229, 108);
             this.startbtn.Name = "startbtn";
-            this.startbtn.Size = new System.Drawing.Size(194, 52);
+            this.startbtn.Size = new System.Drawing.Size(219, 52);
             this.startbtn.TabIndex = 2;
             this.startbtn.Text = "Play";
             this.startbtn.UseVisualStyleBackColor = false;
@@ -522,6 +523,7 @@
             // menupanel
             // 
             this.menupanel.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.menupanel.Controls.Add(this.instructbtn);
             this.menupanel.Controls.Add(this.dropdownpanel);
             this.menupanel.Controls.Add(this.topmenupanel);
             this.menupanel.Controls.Add(this.quitbtn);
@@ -533,6 +535,24 @@
             this.menupanel.Name = "menupanel";
             this.menupanel.Size = new System.Drawing.Size(684, 525);
             this.menupanel.TabIndex = 0;
+            // 
+            // instructbtn
+            // 
+            this.instructbtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.instructbtn.BackColor = System.Drawing.Color.LightSlateGray;
+            this.instructbtn.FlatAppearance.BorderColor = System.Drawing.Color.LemonChiffon;
+            this.instructbtn.FlatAppearance.BorderSize = 2;
+            this.instructbtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.instructbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.instructbtn.Font = new System.Drawing.Font("Modern No. 20", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.instructbtn.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.instructbtn.Location = new System.Drawing.Point(229, 258);
+            this.instructbtn.Name = "instructbtn";
+            this.instructbtn.Size = new System.Drawing.Size(219, 52);
+            this.instructbtn.TabIndex = 7;
+            this.instructbtn.Text = "Instructions";
+            this.instructbtn.UseVisualStyleBackColor = false;
+            this.instructbtn.Click += new System.EventHandler(this.instructbtn_Click);
             // 
             // dropdownpanel
             // 
@@ -636,9 +656,9 @@
             this.label6.ForeColor = System.Drawing.Color.GhostWhite;
             this.label6.Location = new System.Drawing.Point(27, 20);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(95, 30);
+            this.label6.Size = new System.Drawing.Size(155, 30);
             this.label6.TabIndex = 0;
-            this.label6.Text = "QuizIt";
+            this.label6.Text = "QuizMania";
             // 
             // quitbtn
             // 
@@ -650,9 +670,9 @@
             this.quitbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.quitbtn.Font = new System.Drawing.Font("Modern No. 20", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitbtn.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.quitbtn.Location = new System.Drawing.Point(249, 289);
+            this.quitbtn.Location = new System.Drawing.Point(229, 329);
             this.quitbtn.Name = "quitbtn";
-            this.quitbtn.Size = new System.Drawing.Size(194, 52);
+            this.quitbtn.Size = new System.Drawing.Size(219, 52);
             this.quitbtn.TabIndex = 5;
             this.quitbtn.Text = "Quit";
             this.quitbtn.UseVisualStyleBackColor = false;
@@ -668,9 +688,9 @@
             this.highscorebtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.highscorebtn.Font = new System.Drawing.Font("Modern No. 20", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.highscorebtn.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.highscorebtn.Location = new System.Drawing.Point(250, 204);
+            this.highscorebtn.Location = new System.Drawing.Point(227, 184);
             this.highscorebtn.Name = "highscorebtn";
-            this.highscorebtn.Size = new System.Drawing.Size(194, 52);
+            this.highscorebtn.Size = new System.Drawing.Size(219, 52);
             this.highscorebtn.TabIndex = 4;
             this.highscorebtn.Text = "High Scores";
             this.highscorebtn.UseVisualStyleBackColor = false;
@@ -697,11 +717,11 @@
             // 
             this.highestscorelb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.highestscorelb.AutoSize = true;
-            this.highestscorelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.highestscorelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.highestscorelb.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.highestscorelb.Location = new System.Drawing.Point(497, 52);
+            this.highestscorelb.Location = new System.Drawing.Point(507, 52);
             this.highestscorelb.Name = "highestscorelb";
-            this.highestscorelb.Size = new System.Drawing.Size(13, 13);
+            this.highestscorelb.Size = new System.Drawing.Size(14, 15);
             this.highestscorelb.TabIndex = 7;
             this.highestscorelb.Text = "_";
             // 
@@ -709,11 +729,11 @@
             // 
             this.highplayernamelb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.highplayernamelb.AutoSize = true;
-            this.highplayernamelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.highplayernamelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.highplayernamelb.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.highplayernamelb.Location = new System.Drawing.Point(497, 25);
+            this.highplayernamelb.Location = new System.Drawing.Point(508, 25);
             this.highplayernamelb.Name = "highplayernamelb";
-            this.highplayernamelb.Size = new System.Drawing.Size(13, 13);
+            this.highplayernamelb.Size = new System.Drawing.Size(14, 15);
             this.highplayernamelb.TabIndex = 6;
             this.highplayernamelb.Text = "_";
             // 
@@ -721,11 +741,11 @@
             // 
             this.lastgamescorelb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lastgamescorelb.AutoSize = true;
-            this.lastgamescorelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lastgamescorelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastgamescorelb.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.lastgamescorelb.Location = new System.Drawing.Point(186, 52);
+            this.lastgamescorelb.Location = new System.Drawing.Point(199, 52);
             this.lastgamescorelb.Name = "lastgamescorelb";
-            this.lastgamescorelb.Size = new System.Drawing.Size(13, 13);
+            this.lastgamescorelb.Size = new System.Drawing.Size(14, 15);
             this.lastgamescorelb.TabIndex = 5;
             this.lastgamescorelb.Text = "_";
             // 
@@ -733,11 +753,11 @@
             // 
             this.lastplayernamelb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lastplayernamelb.AutoSize = true;
-            this.lastplayernamelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lastplayernamelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastplayernamelb.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.lastplayernamelb.Location = new System.Drawing.Point(174, 25);
+            this.lastplayernamelb.Location = new System.Drawing.Point(179, 25);
             this.lastplayernamelb.Name = "lastplayernamelb";
-            this.lastplayernamelb.Size = new System.Drawing.Size(13, 13);
+            this.lastplayernamelb.Size = new System.Drawing.Size(14, 15);
             this.lastplayernamelb.TabIndex = 4;
             this.lastplayernamelb.Text = "_";
             // 
@@ -745,10 +765,11 @@
             // 
             this.lastscorelb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lastscorelb.AutoSize = true;
+            this.lastscorelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastscorelb.ForeColor = System.Drawing.Color.LemonChiffon;
             this.lastscorelb.Location = new System.Drawing.Point(88, 52);
             this.lastscorelb.Name = "lastscorelb";
-            this.lastscorelb.Size = new System.Drawing.Size(92, 13);
+            this.lastscorelb.Size = new System.Drawing.Size(105, 15);
             this.lastscorelb.TabIndex = 3;
             this.lastscorelb.Text = "Last Game Score:";
             // 
@@ -756,10 +777,11 @@
             // 
             this.highscorelb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.highscorelb.AutoSize = true;
+            this.highscorelb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.highscorelb.ForeColor = System.Drawing.Color.LemonChiffon;
             this.highscorelb.Location = new System.Drawing.Point(414, 52);
             this.highscorelb.Name = "highscorelb";
-            this.highscorelb.Size = new System.Drawing.Size(77, 13);
+            this.highscorelb.Size = new System.Drawing.Size(87, 15);
             this.highscorelb.TabIndex = 2;
             this.highscorelb.Text = "Highest Score:";
             // 
@@ -767,10 +789,11 @@
             // 
             this.highplayerlb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.highplayerlb.AutoSize = true;
+            this.highplayerlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.highplayerlb.ForeColor = System.Drawing.Color.LemonChiffon;
             this.highplayerlb.Location = new System.Drawing.Point(411, 25);
             this.highplayerlb.Name = "highplayerlb";
-            this.highplayerlb.Size = new System.Drawing.Size(80, 13);
+            this.highplayerlb.Size = new System.Drawing.Size(91, 15);
             this.highplayerlb.TabIndex = 1;
             this.highplayerlb.Text = "Highest Scorer:";
             // 
@@ -778,10 +801,11 @@
             // 
             this.lastplayerlb.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lastplayerlb.AutoSize = true;
+            this.lastplayerlb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastplayerlb.ForeColor = System.Drawing.Color.LemonChiffon;
             this.lastplayerlb.Location = new System.Drawing.Point(88, 25);
             this.lastplayerlb.Name = "lastplayerlb";
-            this.lastplayerlb.Size = new System.Drawing.Size(80, 13);
+            this.lastplayerlb.Size = new System.Drawing.Size(89, 15);
             this.lastplayerlb.TabIndex = 0;
             this.lastplayerlb.Text = "Last Played By:";
             // 
@@ -973,6 +997,8 @@
             // 
             this.ClientSize = new System.Drawing.Size(684, 525);
             this.Controls.Add(this.menupanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(700, 564);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QuizMania";
@@ -1076,6 +1102,7 @@
         private System.Windows.Forms.Timer dropdowntimer;
         private System.Windows.Forms.Button setkeybtn;
         private System.Windows.Forms.Label curnamequizlb;
+        private System.Windows.Forms.Button instructbtn;
     }
 }
 

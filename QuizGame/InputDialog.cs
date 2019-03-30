@@ -13,7 +13,7 @@ namespace QuizGame
         {
             Form dg = new Form()
             {
-                Width = 450,
+                Width = 445,
                 Height = 150,
                 FormBorderStyle = FormBorderStyle.FixedDialog,
                 StartPosition = FormStartPosition.CenterScreen
@@ -24,11 +24,15 @@ namespace QuizGame
             if (hidden)
                 thetext.PasswordChar = '*';
             thetext.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            Button confirm = new Button { Left = 175, Top = 68, Text = "Ok", DialogResult = DialogResult.OK };
+            Button confirm = new Button { Left = 110, Top = 68, Text = "Ok", DialogResult = DialogResult.OK };
+            Button cancel = new Button { Left = 220, Top = 68, Text = "Cancel", DialogResult = DialogResult.Cancel };
             confirm.Click += (sender, e) => { dg.Close(); };
             dg.Controls.Add(thelabel);
             dg.Controls.Add(thetext);
             dg.Controls.Add(confirm);
+            dg.Controls.Add(cancel);
+            dg.MinimizeBox = false;
+            dg.MaximizeBox = false;
             dg.AcceptButton = confirm;
 
             return dg.ShowDialog() == DialogResult.OK ? thetext.Text : "";

@@ -667,7 +667,12 @@ namespace QuizGame
                 System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             prop.SetValue(c, true, null);
         }
-        
+
+        private void instructbtn_Click(object sender, EventArgs e)
+        {
+            InstructionDialog.ShowInstructions();
+        }
+
         private void quitbtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
